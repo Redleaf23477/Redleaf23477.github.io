@@ -3,7 +3,7 @@ title: "Second Post"
 categories:
   - testing 
 tags:
-  - tag2
+  - testing 
 ---
 
 中文測試
