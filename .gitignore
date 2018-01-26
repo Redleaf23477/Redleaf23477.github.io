@@ -14,6 +14,4 @@ node_modules
 npm-debug.log*
 
 # my files
-upload.sh
-newpost.sh
-post_template.md
+_newpost
