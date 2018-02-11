@@ -303,6 +303,6 @@ void process()
 ---------
 #### 參考資料：
 1. 建中資訊社講義2015版
-1. [Lecture 9 | Search 6: Iterative Deepening (IDS) and IDA*](https://www.youtube.com/watch?v=5LMXQ1NGHwU)
+1. [Lecture 9 Search 6: Iterative Deepening (IDS) and IDA*](https://www.youtube.com/watch?v=5LMXQ1NGHwU)
 1. [Amit’s A\* Pages](http://theory.stanford.edu/~amitp/GameProgramming/)
 
