@@ -21,8 +21,6 @@ categories:
 
 是說下面的code理論上是對的，但是都沒實測過。如果有bug請聯絡我，我盡速修正。
 
-[TOC]
-
 ## DFS 深度優先搜尋
 DFS = Depth First Search。
 遍歷圖的時候，DFS會先往最深的地方衝，直到當前節點的每一條路都走過了才退回上一層，找另一條路繼續搜尋。
@@ -32,7 +30,8 @@ DFS = Depth First Search。
 
 ```c++
 const int VN = 100;    // number of vertices
-vector<int> graph[VN]; // using Adjacency Matrix, graph[vertex_idx] = neighboring_vertex
+vector<int> graph[VN]; // using Adjacency Matrix, 
+                       // graph[vertex_idx] = neighboring_vertex
 bool vis[VN];          // store whether a vertex is visited in dfs
 
 void dfs(int idx, int f)
@@ -56,7 +55,8 @@ BFS = Breadth First Search。
 
 ```c++
 const int VN = 100;    // number of vertices
-vector<int> graph[VN]; // using Adjacency Matrix, graph[vertex_idx] = neighboring_vertex
+vector<int> graph[VN]; // using Adjacency Matrix,
+                       // graph[vertex_idx] = neighboring_vertex
 bool vis[VN];          // store whether a vertex is visited in bfs 
 
 void bfs(int start_v)  // starting vertex
@@ -93,13 +93,14 @@ BiBFS找到最短路時，兩個queue各跑了d/2的深度，空間複雜度下�
 
 ```c++
 const int VN = 100;    // number of vertices
-vector<int> graph[VN]; // using Adjacency Matrix, graph[vertex_idx] = neighboring_vertex
+vector<int> graph[VN]; // using Adjacency Matrix,
+                       // graph[vertex_idx] = neighboring_vertex
 bool s_vis[VN];        // for bfs starting from start
 bool e_vis[VN];        // for bfs starting from end
 
-void bibfs(int vs, int ve)                     // starting vertex and ending vertex
+void bibfs(int vs, int ve)        // starting vertex and ending vertex
 {
-    queue<int> s_que, e_que;                 // bfs from start, bfs from end
+    queue<int> s_que, e_que;      // bfs from start, bfs from end
     s_que.push(vs);
     s_vis[vs] = true;
     e_que.push(ve);
@@ -110,7 +111,7 @@ void bibfs(int vs, int ve)                     // starting vertex and ending ver
         int sf = s_que.front(); s_que.pop();
         for(auto c:graph[sf])
         {
-            if(e_vis[c]) return;              //shortest path found, terminate
+            if(e_vis[c]) return;  //shortest path found, terminate
             if(!s_vis[c])
             {
                 s_vis[c] = true;
@@ -120,7 +121,7 @@ void bibfs(int vs, int ve)                     // starting vertex and ending ver
         int ef = e_que.front(); e_que.pop();
         for(auto c:graph[ef])
         {
-            if(s_vis[c]) return;              //shortest path found, terminate
+            if(s_vis[c]) return;  //shortest path found, terminate
             if(!e_vis[c])
             {
                 e_vis[c] = true;
@@ -147,12 +148,14 @@ IDDFS每次回傳的是下一次遞迴深度限制。如果答案找到了，那
 
 ```c++
 const int VN = 100;    // number of vertices
-vector<int> graph[VN]; // using Adjacency Matrix, graph[vertex_idx] = neighboring_vertex
+vector<int> graph[VN]; // using Adjacency Matrix,
+                       // graph[vertex_idx] = neighboring_vertex
 bool vis[VN];          // store whether a vertex is visited in dfs
 bool found;            // indicate whether the ans is found
 int v_ans;             // the answer vertex to find
 
-int iddfs(int idx, int f, int depth, int bound) // idxth vertex, prev vertex, depth, bound of depth
+// parameters: idxth vertex, prev vertex, depth, bound of depth
+int iddfs(int idx, int f, int depth, int bound) 
 {
     if(depth > bound) return depth;
     if(idx == v_ans) { found = true; return depth; }
@@ -176,7 +179,8 @@ int iddfs(int idx, int f, int depth, int bound) // idxth vertex, prev vertex, de
 void process()
 {
     int bound = 0;
-    while(!found) bound = iddfs(0, 0, 0, bound); // when found == true, iddfs will return the ans
+    // when found == true, iddfs will return the ans
+    while(!found) bound = iddfs(0, 0, 0, bound); 
     cout << bound << endl;
 }
 ```
@@ -214,13 +218,14 @@ struct Cmp
 typedef priority_queue<Node, vector<Node>, Cmp> PQ;
 
 const int VN = 100;    // number of vertices
-vector<int> graph[VN]; // using Adjacency Matrix, graph[vertex_idx] = neighboring_vertex
+vector<int> graph[VN]; // using Adjacency Matrix, 
+                       // graph[vertex_idx] = neighboring_vertex
 bool vis[VN];          // store whether a vertex is visited in bfs 
 int ans;               // the answer vertex we want to find
 
 int h(int vidx);       // return heuristic function value
 
-int astar(int sv)       // sv: starting vertex
+int astar(int sv)      // sv: starting vertex
 {
     PQ pq;
     pq.push(Node(sv, 0+h(sv), 0));
@@ -242,7 +247,7 @@ int astar(int sv)       // sv: starting vertex
 ```
 
 ## Heuristic Function 對 A\*的影響
-分下列情況討論：[ref:heuristic&astar]
+分下列情況討論：[ref](http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html#a-stars-use-of-the-heuristic)
 1. **h(x) = 0** 也就是f(x) = g(x)，這樣A\*就變成Dijkstra了。
 1. **h(x)不高估** 也就是h(x) <= x到終點的實際距離，這個時候可以找到最短路徑。
 當h(x)估的越準，A\*的效率就越高。
@@ -264,7 +269,8 @@ int v_ans;             // the answer vertex to find
 
 int h(int idx);        // heuristic function
 
-int idastar(int idx, int f, int depth, int bound) // idxth vertex, prev vertex, depth, bound of fx
+// parameters: idxth vertex, prev vertex, depth, bound of fx
+int idastar(int idx, int f, int depth, int bound) 
 {
     int hx = h(idx);
     if(depth+hx > bound) return depth+hx;
@@ -300,4 +306,3 @@ void process()
 1. [Lecture 9 | Search 6: Iterative Deepening (IDS) and IDA*](https://www.youtube.com/watch?v=5LMXQ1NGHwU)
 1. [Amit’s A\* Pages](http://theory.stanford.edu/~amitp/GameProgramming/)
 
-[ref:heuristic&astar]: http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html#a-stars-use-of-the-heuristic
