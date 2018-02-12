@@ -283,7 +283,7 @@ int idastar(int idx, int f, int depth, int bound)
         if(!vis[c])
         {
             vis[c] = true;
-            int res = iddfs(c, idx, depth+1, bound);
+            int res = idastar(c, idx, depth+1, bound);
             if(found) return res;
             else nxtbound = min(nxtbound, res);
             vis[c] = false;
