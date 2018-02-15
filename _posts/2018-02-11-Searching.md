@@ -231,14 +231,14 @@ int astar(int sv)      // sv: starting vertex
     pq.push(Node(sv, 0+h(sv), 0));
     vis[sv] = true;
     while(!pq.empty())
-    {
+    {   
+        vis[c] = true; // vis = true should be put here, because a pt is sure to be in a shortest path if and only if it is popped out
         Node tp = pq.top(); pq.pop();
         for(auto c:graph[tp.v])
         {
             if(c == ans) return tp.step+1;
             if(!vis[c]) 
             {
-                vis[c] = true;
                 pq.push(Node(c, tp.step+1+h(c), tp.step+1));
             }
         }
