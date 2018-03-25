@@ -11,7 +11,7 @@ categories:
 >
 > 上面列的event都可以自己寫callback，每個callback有哪些參數請參見官方documentation
 
- ## callback寫在哪？
+## callback寫在哪？
 
 有兩種寫法，一種是在initialize hot的時候一起寫在設定裡面，另一種是用addhook。addhook函式吃兩個參數，第一個是event名稱（一個字串），第二個參數是這個event觸發後要幹麻（一個function）。例如現在想要寫beforeChange的callback，像這樣：
 
