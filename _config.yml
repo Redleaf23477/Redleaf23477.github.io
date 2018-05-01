@@ -10,10 +10,10 @@ remote_theme             : "mmistakes/minimal-mistakes"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "My Site"
+title                    : "Redleaf23477 解題紀錄"
 title_separator          : "-"
 name                     : "Redleaf23477"
-description              : "Still testing"
+description              : "解題心得+弱弱的模板庫"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -87,7 +87,7 @@ analytics:
 author:
   name             : "Redleaf23477"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Still testing"
+  bio              : "ㄠㄨ？"
   location         : "Taiwan"
   email            :
   uri              :
